@@ -1,7 +1,0 @@
-{
-  "name": "myshelf-frontend",
-  "version": "0.0.1",
-  "scripts": {
-    "build": "echo \"No frontend yet\" && exit 0"
-  }
-}
