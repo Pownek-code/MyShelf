@@ -1,17 +1,52 @@
-# Python
-backend/venv/
-backend/__pycache__/
-backend/*.pyc
+# ==============================================================================
+# MyShelf Production Mono-Repository Exclusion Matrix
+# ==============================================================================
 
-# Node
-frontend/node_modules/
-frontend/dist/
+# 1. Java / Apache Maven Blockades
+# ------------------------------------------------------------------------------
+**/target/
+**/pom.xml.tag
+**/pom.xml.releaseBackup
+**/pom.xml.versionsBackup
+**/pom.xml.next
+**/*.class
+**/*.jar
+**/*.war
 
-# Env
-*.env
+# 2. Python Ecosystem & Virtual Environments
+# ------------------------------------------------------------------------------
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/*.pyd
+**/.pytest_cache/
+**/.venv/
+**/venv/
+**/env/
+**/ENV/
+**/dist/
+**/build/
+**/*.egg-info/
 
-# VSCode
+# 3. Integrated Development Environments (IDEs) & Editor Garbage
+# ------------------------------------------------------------------------------
 .vscode/
+.idea/
+*.iml
+*.iws
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+*.swo
 
-# Docker
-postgres_data/
+# 4. Operating System Structural Artifacts
+# ------------------------------------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
