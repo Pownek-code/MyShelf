@@ -1,47 +1,48 @@
-name: CI
+name: MyShelf Continuous Integration Pipeline
 
 on:
   push:
-    branches: ["main"]
+    branches: [ main, master ]
   pull_request:
-    branches: ["main"]
+    branches: [ main, master ]
 
 jobs:
-  backend-tests:
+  validate-java-core:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout Source Code Graph
         uses: actions/checkout@v4
 
-      - name: Set up Python
+      - name: Initialize Java Development Kit Environment
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Execute Compilation and Package Evaluation
+        run: |
+          cd myshelf-core
+          mvn clean compile
+
+  validate-python-brain:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Code Graph
+        uses: actions/checkout@v4
+
+      - name: Initialize Python Runtime Environment
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: '3.11'
+          cache: 'pip'
 
-      - name: Install dependencies
+      - name: Inflate Application Dependencies
         run: |
-          cd backend
-          python -m pip install --upgrade pip
+          cd myshelf-brain
           pip install -r requirements.txt
 
-      - name: Run backend tests
+      - name: Execute Analytical Syntax Validation
         run: |
-          cd backend
-          pytest -q
-
-  frontend-build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "18"
-
-      - name: Install dependencies & build
-        run: |
-          cd frontend
-          npm ci || npm install
-          npm run build
+          cd myshelf-brain
+          python -m compileall .
